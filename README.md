@@ -24,7 +24,7 @@ If you would like to contribute, please see our [CONTRIBUTING guidelines.](https
 Please note that this project is released with a [Contributor Code of Conduct](https://github.com/bcgov/env-moosetracker-ios/blob/master/CODE-OF-CONDUCT.md). By participating in this project you agree to abide by its terms.
 
 ## License
-Copyright 2017 Province of British Columbia
+Copyright © 2017, Province of British Columbia. Original Moose Survey app source code modified and licensed with permission from the University of Alberta. More information about the development of University of Alberta’s Moose Survey app can be read in the following journal article: “Moose Survey App for Population Monitoring” by Mark S. Boyce and Rob Corrigan, published in Wildlife Society Bulletin; DOI: 10.1002/wsb.732.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
