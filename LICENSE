@@ -1,7 +1,5 @@
 The code and documents in this repository are licensed under different licenses.
 
-- All files in the /Artwork directory are under Crown Copyright.
-
 - All code in the /WildlifeTracker directory is licensed under the Apache License 2.0. See LICENSE in the appropriate directories, with the following exceptions:
 
 - All code in the /fmdb directory is licensed under the MIT License. See LICENSE in the appropriate directory
@@ -9,3 +7,11 @@ The code and documents in this repository are licensed under different licenses.
 - All code in the /wkb-ios directory is licensed under the MIT License. See LICENSE in the appropriate directory
 
 - Code for JTSReachbility.h and JTSReachability.m are under the MIT License.
+
+
+
+- All files in the /Artwork directory are under Crown Copyright. Copyright © 2018, Province of British Columbia.
+
+All rights reserved.
+
+This material is owned by the Government of British Columbia and protected by copyright law. It may not be reproduced or redistributed without the prior written permission of the Province of British Columbia.
