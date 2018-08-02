@@ -1,4 +1,4 @@
-## Contributing to BCDevExchange.org
+## Contributing
 
 Government employees, public and members of the private sector are encouraged to contribute to the repository by **forking and submitting a pull request**.
 
