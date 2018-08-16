@@ -12,7 +12,7 @@
 #import "WTMUManager.h"
 #import "AppDelegate.h"
 
-@interface SightingViewController () <UIPickerViewDataSource, UIPickerViewDelegate, UIAlertViewDelegate, CLLocationManagerDelegate>
+@interface SightingViewController () <UIPickerViewDataSource, UIPickerViewDelegate, CLLocationManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIView *scrollContentView;
@@ -49,8 +49,6 @@
 @property (nonatomic) NSInteger selectedRegionIndex;
 @property (nonatomic) NSInteger selectedMUIndex;
 @property (nonatomic, strong) NSDate *selectedDate;
-@property (nonatomic, copy) void (^alertCompletionBlock)(void);
-@property (nonatomic, copy) void (^alertCancelBlock)(void);
 @property (nonatomic, weak) UIButton *dateDoneButton;
 @property (nonatomic, weak) UIButton *muDoneButton;
 @property (nonatomic, strong) CLLocationManager *locationManager;
@@ -151,7 +149,7 @@
 
     NSDate *now = [NSDate date];
     self.datePicker.maximumDate = now;
-    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     NSDateComponents *components = [[NSDateComponents alloc] init];
     components.year = -1;
     NSDate *lastYear = [calendar dateByAddingComponents:components toDate:now options:0];
@@ -199,7 +197,7 @@
 - (void)updateSelectedDate
 {
     // Extract year/month/day in local time from the date picker
-    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     NSDateComponents *components = [calendar components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:self.datePicker.date];
     
     // Compute noon on the same year/month/day, making sure it's in Vancouver time
@@ -227,23 +225,14 @@
         title = @"Thank You";
         message = @"Your data was successfully submitted to the server.";
     }
-    if ([UIAlertController class]) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:title
-                                                                       message:message
-                                                                preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
-                                                           style:UIAlertActionStyleDefault
-                                                         handler:nil];
-        [alert addAction:okAction];
-        [self presentViewController:alert animated:YES completion:nil];
-    } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
-                                                        message:message
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [alert show];
-    }
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title
+                                                                   message:message
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:nil];
+    [alert addAction:okAction];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (IBAction)dateButtonAction:(id)sender
@@ -287,23 +276,14 @@
     if (self.hoursCount == 0) {
         NSString *errTitle = @"Hours Out";
         NSString *errMsg = @"Please enter the number of hours you were out watching for moose.";
-        if ([UIAlertController class]) {
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:errTitle
-                                                                           message:errMsg
-                                                                    preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
-                                                               style:UIAlertActionStyleDefault
-                                                             handler:nil];
-            [alert addAction:okAction];
-            [self presentViewController:alert animated:YES completion:nil];
-        } else {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:errTitle
-                                                            message:errMsg
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            [alert show];
-        }
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:errTitle
+                                                                       message:errMsg
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
+                                                           style:UIAlertActionStyleDefault
+                                                         handler:nil];
+        [alert addAction:okAction];
+        [self presentViewController:alert animated:YES completion:nil];
         return;
     }
     
@@ -365,36 +345,21 @@
         [message appendString:@"."];
     }
     NSString *title = @"Confirm Submit";
-    if ([UIAlertController class]) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:title
-                                                                       message:message
-                                                                preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *submitAction = [UIAlertAction actionWithTitle:@"Submit"
-                                                               style:UIAlertActionStyleDefault
-                                                             handler:^(UIAlertAction *action) {
-                                                                 [[DataController sharedInstance] submitData:sightingData];
-                                                                 [self resetButtonAction:nil];
-                                                             }];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
-                                                               style:UIAlertActionStyleCancel
-                                                             handler:nil];
-        [alert addAction:submitAction];
-        [alert addAction:cancelAction];
-        [self presentViewController:alert animated:YES completion:nil];
-    } else {
-        __weak SightingViewController *weakSelf = self;
-        self.alertCompletionBlock = ^(void) {
-            [[DataController sharedInstance] submitData:sightingData];
-            [weakSelf resetButtonAction:nil];
-        };
-        self.alertCancelBlock = nil;
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
-                                                        message:message
-                                                       delegate:self
-                                              cancelButtonTitle:@"Cancel"
-                                              otherButtonTitles:@"Submit", nil];
-        [alert show];
-    }
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title
+                                                                   message:message
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *submitAction = [UIAlertAction actionWithTitle:@"Submit"
+                                                           style:UIAlertActionStyleDefault
+                                                         handler:^(UIAlertAction *action) {
+                                                             [[DataController sharedInstance] submitData:sightingData];
+                                                             [self resetButtonAction:nil];
+                                                         }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
+                                                           style:UIAlertActionStyleCancel
+                                                         handler:nil];
+    [alert addAction:submitAction];
+    [alert addAction:cancelAction];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (IBAction)bullsStepperValueChanged:(UIStepper *)sender
@@ -669,21 +634,6 @@
     self.selectedMUIndex = [pickerView selectedRowInComponent:1];
     self.selectedMU = [array objectAtIndex:self.selectedMUIndex];
     [self updatePickerFromSelectedMU];
-}
-
-#pragma mark - UIAlertViewDelegate methods
-
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == alertView.cancelButtonIndex) {
-        if (self.alertCancelBlock)
-            self.alertCancelBlock();
-    } else {
-        if (self.alertCompletionBlock)
-            self.alertCompletionBlock();
-    }
-    self.alertCompletionBlock = nil;
-    self.alertCancelBlock = nil;
 }
 
 #pragma mark - CLLocationManagerDelegate methods

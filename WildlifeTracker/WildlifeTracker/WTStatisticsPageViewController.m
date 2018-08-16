@@ -22,7 +22,7 @@
     WTStatisticsViewController *initialVC = [self.storyboard instantiateViewControllerWithIdentifier:@"statisticsViewController"];
     
     // Set default statistics view to "this year"
-    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     calendar.locale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
     calendar.timeZone = [NSTimeZone timeZoneWithName:@"America/Vancouver"];
     NSDateComponents *components = [calendar components:NSCalendarUnitYear fromDate:[NSDate date]];

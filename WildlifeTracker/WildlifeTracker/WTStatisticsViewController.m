@@ -121,7 +121,7 @@
 - (void)updateSearchResults
 {
     DataController *dc = [DataController sharedInstance];
-    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     calendar.timeZone = [NSTimeZone timeZoneWithName:@"America/Vancouver"];
     NSDateComponents *components = [[NSDateComponents alloc] init];
     components.year = self.year;

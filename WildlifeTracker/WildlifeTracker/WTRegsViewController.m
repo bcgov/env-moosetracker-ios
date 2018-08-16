@@ -30,7 +30,7 @@
 @end
 
 
-@interface WTRegsViewController () <QLPreviewControllerDataSource, UIPickerViewDataSource, UIPickerViewDelegate, UIAlertViewDelegate>
+@interface WTRegsViewController () <QLPreviewControllerDataSource, UIPickerViewDataSource, UIPickerViewDelegate>
 
 @property (nonatomic, strong) QLPreviewController *previewController;
 @property (nonatomic, strong) NSArray *sectionNames;
@@ -139,7 +139,6 @@ static BOOL didShowDisclaimer = NO;
         didShowDisclaimer = YES;
         NSString *title = @"Warning";
         NSString *message = @"The British Columbia Hunting and Trapping Regulations Synopsis is intended for general information purposes only. Where there is a discrepancy between this synopsis and the Regulations, the Regulations are the final authority. Regulations are subject to change from time to time, and it is the responsibility of an individual to be informed of the current Regulations.\n\nTo ensure you have the most up to date hunting regulations please refer to the online version.";
-        if ([UIAlertController class]) {
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:title
                                                                            message:message
                                                                     preferredStyle:UIAlertControllerStyleAlert];
@@ -154,14 +153,6 @@ static BOOL didShowDisclaimer = NO;
             [alert addAction:onlineAction];
             [alert addAction:okAction];
             [self presentViewController:alert animated:YES completion:nil];
-        } else {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
-                                                            message:message
-                                                           delegate:self
-                                                  cancelButtonTitle:nil
-                                                  otherButtonTitles:@"View Online", @"OK", nil];
-            [alert show];
-        }
     }
 }
 
@@ -170,15 +161,6 @@ static BOOL didShowDisclaimer = NO;
     self.indexButton.enabled = NO;
     [self.pickerView selectRow:self.previewController.currentPreviewItemIndex inComponent:0 animated:NO];
     [self.pickerTextField becomeFirstResponder];
-}
-
-#pragma mark - UIAlertViewDelegate methods
-
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == 0) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www2.gov.bc.ca/gov/content/sports-culture/recreation/fishing-hunting/hunting/regulations-synopsis"]];
-    }
 }
 
 #pragma mark - UIPickerView methods
