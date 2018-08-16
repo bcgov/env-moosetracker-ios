@@ -16,7 +16,6 @@
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIView *scrollContentView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollContentWidthConstraint;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UIButton *dateButton;
 @property (weak, nonatomic) IBOutlet UIView *datePickerView;
@@ -52,7 +51,6 @@
 @property (nonatomic, strong) NSDate *selectedDate;
 @property (nonatomic, copy) void (^alertCompletionBlock)(void);
 @property (nonatomic, copy) void (^alertCancelBlock)(void);
-@property (nonatomic) BOOL hasAppeared;
 @property (nonatomic, weak) UIButton *dateDoneButton;
 @property (nonatomic, weak) UIButton *muDoneButton;
 @property (nonatomic, strong) CLLocationManager *locationManager;
@@ -83,6 +81,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    if (@available(iOS 11, *)) {
+        // Dumb. Can't do "if not available"
+    } else {
+        // Bit of a hack. Add 20 points for status bar on iOS < 11, assuming the automatic inset adjustment doesn't happen.
+        UIEdgeInsets insets = UIEdgeInsetsZero;
+        insets.top = 20.0;
+        insets.bottom = self.tabBarController.tabBar.frame.size.height;
+        self.scrollView.contentInset = insets;
+        self.scrollView.scrollIndicatorInsets = insets;
+    }
+    
     [self showDatePicker:NO animated:NO];
     [self showMUPicker:NO animated:NO];
     
@@ -113,11 +122,6 @@
     }
     
     [self.muButton setTitle:self.selectedMU forState:UIControlStateNormal];
-    
-    if (floor(NSFoundationVersionNumber) < NSFoundationVersionNumber_iOS_7_0) {
-        self.dateButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-        self.muButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-    }
     
     [self updateUI];
 }
@@ -153,12 +157,6 @@
     NSDate *lastYear = [calendar dateByAddingComponents:components toDate:now options:0];
     self.datePicker.minimumDate = lastYear;
     
-    // Seems to be an iOS 6 bug where switching tabs when the scroll view is scrolled up messes with the
-    // content offset when you switch back. Punt and just reset it to 0 always.
-    if (![self respondsToSelector:@selector(topLayoutGuide)]) {
-        [self.scrollView setContentOffset:CGPointZero animated:NO];
-    }
-    
     // Defer asking for location until the user has accepted the licence agreement.
     if (![[NSUserDefaults standardUserDefaults] boolForKey:DID_ACCEPT_LICENSE_DEFAULTS_KEY]) {
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -175,33 +173,6 @@
     [super viewDidAppear:animated];
     [self.muPicker selectRow:self.selectedRegionIndex inComponent:0 animated:(self.hideMuPickerConstraint == nil)];
     [self.muPicker selectRow:self.selectedMUIndex inComponent:1 animated:(self.hideMuPickerConstraint == nil)];
-    self.hasAppeared = YES;
-}
-
-- (void) viewWillLayoutSubviews {
-    [super viewWillLayoutSubviews];
-    if ([self respondsToSelector:@selector(bottomLayoutGuide)]) {
-        CGFloat bottom = self.bottomLayoutGuide.length;
-        // HACK - iOS 7 often returns wrong value; use tab bar height
-        if ((bottom == 0) && self.tabBarController) {
-            bottom = 49.0; // Would need different value for iPad
-        }
-        UIEdgeInsets insets = UIEdgeInsetsMake(self.topLayoutGuide.length, 0, bottom, 0);
-        self.scrollView.contentInset = insets;
-        self.scrollView.scrollIndicatorInsets = insets;
-    }
-}
-
-- (void)viewDidLayoutSubviews {
-    [super viewDidLayoutSubviews];
-    self.scrollContentWidthConstraint.constant = self.view.bounds.size.width;
-    [self.view layoutIfNeeded];
-    
-    // Seems to be an iOS 7/8 bug where auto sizing the scroll content seems to reset the content
-    // offset the first time. So here's a hack to reset it before first appearance if necessary.
-    if (!self.hasAppeared && [self respondsToSelector:@selector(topLayoutGuide)]) {
-        self.scrollView.contentOffset = CGPointMake(0.0, -self.topLayoutGuide.length);
-    }
 }
 
 - (void)handleDidAcceptLicenseNotification:(NSNotification *)notification
@@ -472,13 +443,7 @@
 
 - (UIButton *)addDoneButtonAnimated:(BOOL)animated action:(SEL)action label:(UILabel *)label labelText:(NSString *)labelText button:(UIButton *)button picker:(UIView *)picker
 {
-    UIButtonType buttonType;
-    if (floor(NSFoundationVersionNumber) < NSFoundationVersionNumber_iOS_7_0) {
-        buttonType = UIButtonTypeRoundedRect;
-    } else {
-        buttonType = UIButtonTypeSystem;
-    }
-    UIButton *newButton = [UIButton buttonWithType:buttonType];
+    UIButton *newButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [newButton setTitle:@"Done" forState:UIControlStateNormal];
     newButton.titleLabel.font = button.titleLabel.font;
     [newButton addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];

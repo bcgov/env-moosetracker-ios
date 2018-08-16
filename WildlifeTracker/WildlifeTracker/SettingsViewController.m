@@ -11,7 +11,6 @@
 
 @interface SettingsViewController () <UITextFieldDelegate>
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollContentWidthConstraint;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UISwitch *remindersSwitch;
 @property (weak, nonatomic) IBOutlet UILabel *soundLabel;
@@ -21,25 +20,20 @@
 
 @implementation SettingsViewController
 
-- (void) viewWillLayoutSubviews {
-    [super viewWillLayoutSubviews];
-    if ([self respondsToSelector:@selector(bottomLayoutGuide)]) {
-        CGFloat bottom = self.bottomLayoutGuide.length;
-        // HACK - iOS 7 often returns wrong value; use tab bar height
-        if ((bottom == 0) && self.tabBarController) {
-            bottom = 49.0; // Would need different value for iPad
-        }
-        UIEdgeInsets insets = UIEdgeInsetsMake(self.topLayoutGuide.length, 0, bottom, 0);
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    if (@available(iOS 11, *)) {
+        // Dumb. Can't do "if not available"
+    } else {
+        // Bit of a hack. Add 20 points for status bar on iOS < 11, assuming the automatic inset adjustment doesn't happen.
+        UIEdgeInsets insets = UIEdgeInsetsZero;
+        insets.top = 20.0;
+        insets.bottom = self.tabBarController.tabBar.frame.size.height;
         self.scrollView.contentInset = insets;
         self.scrollView.scrollIndicatorInsets = insets;
     }
-}
-
-- (void)viewDidLayoutSubviews
-{
-    [super viewDidLayoutSubviews];
-    self.scrollContentWidthConstraint.constant = self.view.bounds.size.width;
-    [self.view layoutIfNeeded];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -51,12 +45,6 @@
     self.soundSwitch.on = alarmController.soundEnabled;
     self.soundLabel.enabled = alarmController.remindersEnabled;
     self.soundSwitch.enabled = alarmController.remindersEnabled;
-    
-    // Seems to be an iOS 6 bug where switching tabs when the scroll view is scrolled up messes with the
-    // content offset when you switch back. Punt and just reset it to 0 always.
-    if (![self respondsToSelector:@selector(topLayoutGuide)]) {
-        [self.scrollView setContentOffset:CGPointZero animated:NO];
-    }
 }
 
 - (IBAction)remindersSwitchValueChanged:(UISwitch *)sender

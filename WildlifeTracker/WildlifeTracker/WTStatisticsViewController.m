@@ -44,6 +44,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    if (@available(iOS 11, *)) {
+        // Dumb. Can't do "if not available"
+    } else {
+        // Bit of a hack. Add 20 points for status bar on iOS < 11, assuming the automatic inset adjustment doesn't happen.
+        UIEdgeInsets insets = UIEdgeInsetsZero;
+        insets.top = 20.0;
+        insets.bottom = self.tabBarController.tabBar.frame.size.height;
+        self.scrollView.contentInset = insets;
+        self.scrollView.scrollIndicatorInsets = insets;
+    }
+    
     self.titleLabel.text = [NSString stringWithFormat:@"%ld Summary", (long)self.year];
     self.monthLabels = @[ @"Jan", @"Feb", @"Mar", @"Apr", @"May", @"Jun", @"Jul", @"Aug", @"Sep", @"Oct", @"Nov", @"Dec" ];
     self.selectedRegionIndex = -1;
@@ -73,21 +84,6 @@
     
     [self updateButtons];
     [self updateSearchResults];
-}
-
-- (void) viewWillLayoutSubviews {
-    [super viewWillLayoutSubviews];
-    if ([self respondsToSelector:@selector(bottomLayoutGuide)]) {
-        CGFloat bottom = self.bottomLayoutGuide.length;
-        // HACK - iOS 7 often returns wrong value; use tab bar height
-        if ((bottom == 0) && self.tabBarController) {
-            bottom = 49.0; // Would need different value for iPad
-        }
-        UIEdgeInsets insets = self.scrollView.contentInset;
-        insets.bottom = bottom;
-        self.scrollView.contentInset = insets;
-        self.scrollView.scrollIndicatorInsets = insets;
-    }
 }
 
 - (void)didReceiveMemoryWarning {

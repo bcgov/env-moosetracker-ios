@@ -59,39 +59,28 @@
         [self.mapView setRegion:MKCoordinateRegionMake(CLLocationCoordinate2DMake(centerLat, centerLon), MKCoordinateSpanMake(spanLat, spanLon)) animated:NO];
     }
     
-    if ([UIVisualEffectView class]) {
-        UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-        UIVisualEffectView *blurView = [[UIVisualEffectView alloc] initWithEffect:blur];
-        self.mapTypeBackgroundView = blurView;
-    } else {
-        self.mapTypeBackgroundView = [[UIView alloc] initWithFrame:CGRectZero];
-        self.mapTypeBackgroundView.backgroundColor = [UIColor colorWithRed:0.85 green:0.85 blue:0.85 alpha:1.0];
-    }
+    UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+    UIVisualEffectView *blurView = [[UIVisualEffectView alloc] initWithEffect:blur];
+    self.mapTypeBackgroundView = blurView;
+    UIView *controlContainer = [blurView contentView];
+
     self.mapTypeBackgroundView.layer.cornerRadius = 5.0;
     self.mapTypeBackgroundView.clipsToBounds = YES;
     self.mapTypeBackgroundView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:self.mapTypeBackgroundView];
     
     self.mapTypeControl.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.mapTypeBackgroundView addSubview:self.mapTypeControl];
+    [controlContainer addSubview:self.mapTypeControl];
     NSDictionary *views = @{ @"control": self.mapTypeControl };
-    [self.mapTypeBackgroundView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-1-[control]-1-|" options:0 metrics:nil views:views]];
-    [self.mapTypeBackgroundView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-1-[control]-2-|" options:0 metrics:nil views:views]];
+    [controlContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-1-[control]-1-|" options:0 metrics:nil views:views]];
+    [controlContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-1-[control]-2-|" options:0 metrics:nil views:views]];
     
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.mapTypeBackgroundView
-                                                          attribute:NSLayoutAttributeCenterX
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeCenterX
-                                                         multiplier:1.0
-                                                           constant:0.0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.mapTypeBackgroundView
-                                                          attribute:NSLayoutAttributeTop
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.topLayoutGuide
-                                                          attribute:NSLayoutAttributeBottom
-                                                         multiplier:1.0
-                                                           constant:6.0]];
+    [self.mapTypeBackgroundView.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
+    if (@available(iOS 11, *)) {
+        [self.mapTypeBackgroundView.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor constant:6.0].active = YES;
+    } else {
+        [self.mapTypeBackgroundView.topAnchor constraintEqualToAnchor:self.topLayoutGuide.bottomAnchor constant:6.0].active = YES;
+    }
     
     // Code for manual entry of MU label locations
     /*
