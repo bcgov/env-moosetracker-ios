@@ -30,7 +30,7 @@
 @end
 
 
-@interface WTRegsViewController () <QLPreviewControllerDataSource, UIPickerViewDataSource, UIPickerViewDelegate, UIAlertViewDelegate>
+@interface WTRegsViewController () <QLPreviewControllerDataSource, UIPickerViewDataSource, UIPickerViewDelegate>
 
 @property (nonatomic, strong) QLPreviewController *previewController;
 @property (nonatomic, strong) NSArray *sectionNames;
@@ -75,47 +75,47 @@ static BOOL didShowDisclaimer = NO;
     [self addChildViewController:self.previewController];
     self.previewController.view.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:self.previewController.view];
-    NSMutableDictionary *views = [NSMutableDictionary dictionaryWithDictionary:@{@"preview": self.previewController.view, @"top": self.topLayoutGuide, @"bottom": self.bottomLayoutGuide}];
+    NSMutableDictionary *views = [NSMutableDictionary dictionary];
+    views[@"preview"] = self.previewController.view;
+    NSLayoutAnchor *topLayoutAnchor;
+    NSLayoutAnchor *bottomLayoutAnchor;
+    if (@available(iOS 11, *)) {
+        topLayoutAnchor = self.view.safeAreaLayoutGuide.topAnchor;
+        bottomLayoutAnchor = self.view.safeAreaLayoutGuide.bottomAnchor;
+    } else {
+        topLayoutAnchor = self.topLayoutGuide.bottomAnchor;
+        bottomLayoutAnchor = self.bottomLayoutGuide.topAnchor;
+    }
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[preview]|" options:0 metrics:nil views:views]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[top][preview][bottom]" options:0 metrics:nil views:views]];
+    // For the top, always extend all the way under status bar / safe area
+    [self.view.topAnchor constraintEqualToAnchor:self.previewController.view.topAnchor].active = YES;
+    // On the bottom we can stop at the tab bar
+    [bottomLayoutAnchor constraintEqualToAnchor:self.previewController.view.bottomAnchor].active = YES;
     [self.previewController didMoveToParentViewController:self];
     self.previewController.currentPreviewItemIndex = 0;
     
-    if ([UIVisualEffectView class]) {
-        UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-        UIVisualEffectView *blurView = [[UIVisualEffectView alloc] initWithEffect:blur];
-        self.indexView = blurView;
-    } else {
-        self.indexView = [[UIView alloc] initWithFrame:CGRectZero];
-        self.indexView.backgroundColor = [UIColor colorWithRed:0.85 green:0.85 blue:0.85 alpha:1.0];
-    }
+    
+    UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+    UIVisualEffectView *blurView = [[UIVisualEffectView alloc] initWithEffect:blur];
+    self.indexView = blurView;
+    UIView *buttonContainer = blurView.contentView;
     self.indexView.layer.cornerRadius = 8.0;
     self.indexView.clipsToBounds = YES;
     self.indexView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:self.indexView];
     views[@"index"] = self.indexView;
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[index(70)]-|" options:0 metrics:nil views:views]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[top]-20-[index(31)]" options:0 metrics:nil views:views]];
+    // Place the index button below the safe area / top layout guide
+    [self.indexView.topAnchor constraintEqualToAnchor:topLayoutAnchor constant:8.0].active = YES;
+    [self.indexView.heightAnchor constraintEqualToConstant:31.0].active = YES;
     
     self.indexButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [self.indexButton setTitle:@"Index" forState:UIControlStateNormal];
     [self.indexButton addTarget:self action:@selector(indexButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     self.indexButton.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.indexView addSubview:self.indexButton];
-    [self.indexView addConstraint:[NSLayoutConstraint constraintWithItem:self.indexView
-                                                               attribute:NSLayoutAttributeCenterX
-                                                               relatedBy:NSLayoutRelationEqual
-                                                                  toItem:self.indexButton
-                                                               attribute:NSLayoutAttributeCenterX
-                                                              multiplier:1.0
-                                                                constant:0.0]];
-    [self.indexView addConstraint:[NSLayoutConstraint constraintWithItem:self.indexView
-                                                               attribute:NSLayoutAttributeCenterY
-                                                               relatedBy:NSLayoutRelationEqual
-                                                                  toItem:self.indexButton
-                                                               attribute:NSLayoutAttributeCenterY
-                                                              multiplier:1.0
-                                                                constant:0.0]];
+    [buttonContainer addSubview:self.indexButton];
+    [buttonContainer.centerXAnchor constraintEqualToAnchor:self.indexButton.centerXAnchor].active = YES;
+    [buttonContainer.centerYAnchor constraintEqualToAnchor:self.indexButton.centerYAnchor].active = YES;
     
     self.pickerTextField = [[UITextField alloc] initWithFrame:CGRectZero];
     [self.view addSubview:self.pickerTextField];
@@ -139,7 +139,6 @@ static BOOL didShowDisclaimer = NO;
         didShowDisclaimer = YES;
         NSString *title = @"Warning";
         NSString *message = @"The British Columbia Hunting and Trapping Regulations Synopsis is intended for general information purposes only. Where there is a discrepancy between this synopsis and the Regulations, the Regulations are the final authority. Regulations are subject to change from time to time, and it is the responsibility of an individual to be informed of the current Regulations.\n\nTo ensure you have the most up to date hunting regulations please refer to the online version.";
-        if ([UIAlertController class]) {
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:title
                                                                            message:message
                                                                     preferredStyle:UIAlertControllerStyleAlert];
@@ -154,14 +153,6 @@ static BOOL didShowDisclaimer = NO;
             [alert addAction:onlineAction];
             [alert addAction:okAction];
             [self presentViewController:alert animated:YES completion:nil];
-        } else {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
-                                                            message:message
-                                                           delegate:self
-                                                  cancelButtonTitle:nil
-                                                  otherButtonTitles:@"View Online", @"OK", nil];
-            [alert show];
-        }
     }
 }
 
@@ -170,15 +161,6 @@ static BOOL didShowDisclaimer = NO;
     self.indexButton.enabled = NO;
     [self.pickerView selectRow:self.previewController.currentPreviewItemIndex inComponent:0 animated:NO];
     [self.pickerTextField becomeFirstResponder];
-}
-
-#pragma mark - UIAlertViewDelegate methods
-
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == 0) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www2.gov.bc.ca/gov/content/sports-culture/recreation/fishing-hunting/hunting/regulations-synopsis"]];
-    }
 }
 
 #pragma mark - UIPickerView methods

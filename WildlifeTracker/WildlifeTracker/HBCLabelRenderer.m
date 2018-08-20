@@ -61,7 +61,7 @@
     // Shortcut - use previously calculated width to compute desired font size
     CGFloat fontSize = 80.0 * imageBounds.size.width / overlay.sizeWith80PointFont.width;
     
-    CTTextAlignment alignment = kCTCenterTextAlignment;
+    CTTextAlignment alignment = kCTTextAlignmentCenter;
     
     CTParagraphStyleSetting alignmentSetting;
     alignmentSetting.spec = kCTParagraphStyleSpecifierAlignment;

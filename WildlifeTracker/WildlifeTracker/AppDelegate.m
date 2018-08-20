@@ -73,17 +73,11 @@
 - (void)setupLocalNotifications
 {
     NSLog(@"%s", __PRETTY_FUNCTION__);
-    BOOL needAlarm = YES;
-    if (![[AlarmController sharedInstance] remindersEnabled]) {
-        NSLog (@"Disabling all notifications");
-        [[UIApplication sharedApplication] cancelAllLocalNotifications];
-        needAlarm = NO;
-    }
-    else {
-        NSLog (@"Alarms are on");
-    }
+
+    NSLog (@"Cancelling any pre-existing notifications");
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
     
-    if (needAlarm) {
+    if ([[AlarmController sharedInstance] remindersEnabled]) {
         [[AlarmController sharedInstance] addAlertsForNext2Weeks];
     }
 }
