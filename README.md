@@ -6,8 +6,14 @@ iOS mobile app that allows hunters to participate in moose conservation and mana
 ## Usage
 
 ## Requirements
+The app requires an iOS device running iOS 9.3 or newer.
 
 ## Installation
+Xcode version 9.4 is required. Clone the repository and open the `WildlifeTracker/WildlifeTracker.xcodeproj` file in Xcode.
+
+To run on a simulator, select your desired device from the scheme menu at the top left of the Xcode window and click the Run triangle icon.
+
+To run on a real device, the app must be signed with a provisioning profile that allows distribution to your development devices. You must set a development team for the WildlifeTracker project target. Xcode should be able to create the necessary App ID and provisioning profile if you choose a valid team and leave "Automatically manage signing" checked. If you are using "Free Provisioning", i.e. not a paid developer account, then the provisioning profile Xcode creates will expire after 7 days. For more information, consult the [Apple documentation](https://help.apple.com/xcode/mac/current/#/dev60b6fbbc7).
 
 ## Project Status
 In production
