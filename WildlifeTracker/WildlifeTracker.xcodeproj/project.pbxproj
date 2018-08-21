@@ -19,7 +19,6 @@
 		3A0902451CA3BDFB00043AC1 /* region_8.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 3A09023A1CA3BDFB00043AC1 /* region_8.pdf */; };
 		3A2873B41C8A4A6F00FE06D6 /* labels.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3A2873B31C8A4A6F00FE06D6 /* labels.plist */; };
 		3A9A97941C73B836005FC9D4 /* WTMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9A97931C73B836005FC9D4 /* WTMapViewController.m */; };
-		3A9A97961C73BA10005FC9D4 /* fmdb in Resources */ = {isa = PBXBuildFile; fileRef = 3A9A97951C73BA10005FC9D4 /* fmdb */; };
 		3A9A979B1C73BAF5005FC9D4 /* management_units.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 3A9A979A1C73BAF5005FC9D4 /* management_units.sqlite */; };
 		3A9A979E1C73BFC5005FC9D4 /* WTMUOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9A979D1C73BFC5005FC9D4 /* WTMUOverlay.m */; };
 		3A9A97E91C73CB39005FC9D4 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9A97A41C73CB39005FC9D4 /* FMDatabase.m */; };
@@ -109,7 +108,6 @@
 		3A2873B31C8A4A6F00FE06D6 /* labels.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = labels.plist; sourceTree = "<group>"; };
 		3A9A97921C73B836005FC9D4 /* WTMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WTMapViewController.h; sourceTree = "<group>"; };
 		3A9A97931C73B836005FC9D4 /* WTMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WTMapViewController.m; sourceTree = "<group>"; };
-		3A9A97951C73BA10005FC9D4 /* fmdb */ = {isa = PBXFileReference; lastKnownFileType = folder; name = fmdb; path = /Users/griffith/Developer/WildlifeTracker/fmdb; sourceTree = "<absolute>"; };
 		3A9A979A1C73BAF5005FC9D4 /* management_units.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = management_units.sqlite; sourceTree = "<group>"; };
 		3A9A979C1C73BFC5005FC9D4 /* WTMUOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WTMUOverlay.h; sourceTree = "<group>"; };
 		3A9A979D1C73BFC5005FC9D4 /* WTMUOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WTMUOverlay.m; sourceTree = "<group>"; };
@@ -506,7 +504,6 @@
 		3AD21254211E0CD8006891B4 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
-				3A9A97951C73BA10005FC9D4 /* fmdb */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -556,7 +553,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0940;
-				ORGANIZATIONNAME = "John Griffith";
+				ORGANIZATIONNAME = N/A;
 				TargetAttributes = {
 					3A9EA70B1B994DC20093A8B3 = {
 						CreatedOnToolsVersion = 6.4;
@@ -597,7 +594,6 @@
 				3A0902431CA3BDFB00043AC1 /* region_7a.pdf in Resources */,
 				3A2873B41C8A4A6F00FE06D6 /* labels.plist in Resources */,
 				3A09023D1CA3BDFB00043AC1 /* region_1.pdf in Resources */,
-				3A9A97961C73BA10005FC9D4 /* fmdb in Resources */,
 				3ACC65A71BA372CC00BF4974 /* moose.caf in Resources */,
 				3AD2125621252584006891B4 /* Launch Screen.storyboard in Resources */,
 				3ACC3C681D18C8AC00DABE56 /* general.pdf in Resources */,

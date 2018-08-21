@@ -1,11 +1,3 @@
-//
-//  AboutViewController.m
-//  WildlifeTracker
-//
-//  Created by John Griffith on 2015-09-06.
-//  Copyright (c) 2015 John Griffith. All rights reserved.
-//
-
 #import <MessageUI/MessageUI.h>
 #import "AboutViewController.h"
 #import "AppDelegate.h"

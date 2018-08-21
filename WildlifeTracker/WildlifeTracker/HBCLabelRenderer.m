@@ -1,11 +1,3 @@
-//
-//  HBCLabelRenderer.m
-//  HuntingBC
-//
-//  Created by John Griffith on 2013-10-14.
-//
-//
-
 #import <CoreText/CoreText.h>
 #import "HBCLabelRenderer.h"
 

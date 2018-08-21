@@ -1,11 +1,3 @@
-//
-//  WTStatisticsViewController.m
-//  WildlifeTracker
-//
-//  Created by John Griffith on 2016-02-18.
-//  Copyright © 2016 John Griffith. All rights reserved.
-//
-
 #import "WTStatisticsViewController.h"
 #import "WTStatisticsChartView.h"
 #import "DataController.h"

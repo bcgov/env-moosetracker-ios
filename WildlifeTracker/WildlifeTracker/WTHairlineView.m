@@ -1,11 +1,3 @@
-//
-//  WTHairlineView.m
-//  WildlifeTracker
-//
-//  Created by John Griffith on 2016-03-03.
-//  Copyright © 2016 John Griffith. All rights reserved.
-//
-
 #import "WTHairlineView.h"
 
 @implementation WTHairlineView

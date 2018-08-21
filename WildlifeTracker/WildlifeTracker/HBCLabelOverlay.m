@@ -1,11 +1,3 @@
-//
-//  HBCLabelOverlay.m
-//  HuntingBC
-//
-//  Created by John Griffith on 2013-09-21.
-//
-//
-
 #import <CoreText/CoreText.h>
 #import "HBCLabelOverlay.h"
 

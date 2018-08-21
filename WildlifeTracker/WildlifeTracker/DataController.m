@@ -1,11 +1,3 @@
-//
-//  DataController.m
-//  Wildlife Survey Application
-//
-//  Created by Daniel Chui on 12-02-27.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
-//
-
 #import "FMDB.h"
 #import "AppDelegate.h"
 #import "NetworkController.h"
