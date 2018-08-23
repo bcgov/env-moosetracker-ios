@@ -1,11 +1,3 @@
-//
-//  HBCRenderer.h
-//  HuntingBC
-//
-//  Created by John Griffith on 2013-10-14.
-//
-//
-
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 

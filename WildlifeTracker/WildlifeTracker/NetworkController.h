@@ -1,12 +1,3 @@
-//
-//  NetworkController.h
-//  Wildlife Survey Application
-//
-//  Created by Daniel Chui on 12-02-08.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
-//
-
-
 /**
  Handles the network calls to the server
  */

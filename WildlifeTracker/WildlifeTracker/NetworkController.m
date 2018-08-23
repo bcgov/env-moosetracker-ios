@@ -1,11 +1,3 @@
-//
-//  NetworkController.m
-//  Wildlife Survey Application
-//
-//  Created by Daniel Chui on 12-02-08.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
-//
-
 #import "JTSReachability.h"
 #import "NetworkController.h"
 

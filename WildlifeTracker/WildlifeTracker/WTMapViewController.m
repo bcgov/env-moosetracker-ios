@@ -1,11 +1,3 @@
-//
-//  WTMapViewController.m
-//  WildlifeTracker
-//
-//  Created by John Griffith on 2016-02-16.
-//  Copyright © 2016 John Griffith. All rights reserved.
-//
-
 #import <MapKit/MapKit.h>
 #import "WTMapViewController.h"
 #import "WTMUOverlay.h"

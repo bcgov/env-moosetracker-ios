@@ -1,11 +1,3 @@
-//
-//  WTMUManager.m
-//  WildlifeTracker
-//
-//  Created by John Griffith on 2016-02-24.
-//  Copyright © 2016 John Griffith. All rights reserved.
-//
-
 #import "WTMUManager.h"
 #import "FMDB.h"
 #import "wkb-ios-Bridging-Header.h"

@@ -1,11 +1,3 @@
-//
-//  HBCRenderer.m
-//  HuntingBC
-//
-//  Created by John Griffith on 2013-10-14.
-//
-//
-
 #import "HBCRenderer.h"
 
 @implementation HBCRenderer
