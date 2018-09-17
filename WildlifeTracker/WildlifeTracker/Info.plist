@@ -21,7 +21,21 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.1.1.0</string>
+	<string>101</string>
+	<key>Fabric</key>
+	<dict>
+		<key>APIKey</key>
+		<string>xxxxx</string>
+		<key>Kits</key>
+		<array>
+			<dict>
+				<key>KitInfo</key>
+				<dict/>
+				<key>KitName</key>
+				<string>Crashlytics</string>
+			</dict>
+		</array>
+	</dict>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -36,9 +50,9 @@
 		</dict>
 	</dict>
 	<key>NSLocationUsageDescription</key>
-	<string>BC Moose Tracker can use your location to determine which Management Unit you're in, and to show your location on the map.</string>
+	<string>BC Moose Tracker can use your location to determine which Management Unit you&apos;re in, and to show your location on the map.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>BC Moose Tracker can use your location to determine which Management Unit you're in, and to show your location on the map.</string>
+	<string>BC Moose Tracker can use your location to determine which Management Unit you&apos;re in, and to show your location on the map.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>Launch Screen</string>
 	<key>UIMainStoryboardFile</key>

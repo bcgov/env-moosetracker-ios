@@ -81,6 +81,8 @@
 		3ACC65A51BA16E1100BF4974 /* JTSReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACC65A41BA16E1100BF4974 /* JTSReachability.m */; };
 		3ACC65A71BA372CC00BF4974 /* moose.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3ACC65A61BA372CC00BF4974 /* moose.caf */; };
 		3AD2125621252584006891B4 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AD2125521252584006891B4 /* Launch Screen.storyboard */; };
+		56D2F8B621501FF500A56A09 /* RELEASE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 56D2F8B521501FF500A56A09 /* RELEASE.txt */; };
+		FB72504FC6F66755FC971123 /* Pods_WildlifeTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535D452B95F421C28C4C63A9 /* Pods_WildlifeTracker.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -231,6 +233,10 @@
 		3ACC65A41BA16E1100BF4974 /* JTSReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTSReachability.m; sourceTree = "<group>"; };
 		3ACC65A61BA372CC00BF4974 /* moose.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = moose.caf; sourceTree = "<group>"; };
 		3AD2125521252584006891B4 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		535D452B95F421C28C4C63A9 /* Pods_WildlifeTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WildlifeTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		56D2F8B521501FF500A56A09 /* RELEASE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = RELEASE.txt; sourceTree = "<group>"; };
+		7AD2C6A719A57CEFBA1FA9AA /* Pods-WildlifeTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WildlifeTracker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WildlifeTracker/Pods-WildlifeTracker.debug.xcconfig"; sourceTree = "<group>"; };
+		C74544487F8219CC812415ED /* Pods-WildlifeTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WildlifeTracker.release.xcconfig"; path = "Pods/Target Support Files/Pods-WildlifeTracker/Pods-WildlifeTracker.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -239,6 +245,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A9A98091C73CBBB005FC9D4 /* libsqlite3.tbd in Frameworks */,
+				FB72504FC6F66755FC971123 /* Pods_WildlifeTracker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,6 +419,7 @@
 		3A9EA7031B994DC20093A8B3 = {
 			isa = PBXGroup;
 			children = (
+				56D2F8B521501FF500A56A09 /* RELEASE.txt */,
 				3A9A98081C73CBBB005FC9D4 /* libsqlite3.tbd */,
 				3ACC65841B9B871D00BF4974 /* Artwork */,
 				3A9A97A21C73CB39005FC9D4 /* fmdb */,
@@ -420,6 +428,8 @@
 				3A9EA72B1B994DC20093A8B3 /* WildlifeTrackerTests */,
 				3A9EA70D1B994DC20093A8B3 /* Products */,
 				3AD21254211E0CD8006891B4 /* Recovered References */,
+				6C6070A342EC3144F4AC5FFE /* Pods */,
+				5EF43B52CF9CC5C7BE004637 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -508,6 +518,23 @@
 			name = "Recovered References";
 			sourceTree = "<group>";
 		};
+		5EF43B52CF9CC5C7BE004637 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				535D452B95F421C28C4C63A9 /* Pods_WildlifeTracker.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6C6070A342EC3144F4AC5FFE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7AD2C6A719A57CEFBA1FA9AA /* Pods-WildlifeTracker.debug.xcconfig */,
+				C74544487F8219CC812415ED /* Pods-WildlifeTracker.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -515,9 +542,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3A9EA7321B994DC20093A8B3 /* Build configuration list for PBXNativeTarget "WildlifeTracker" */;
 			buildPhases = (
+				C6E4E4A0076C91CDF5DF680A /* [CP] Check Pods Manifest.lock */,
 				3A9EA7081B994DC20093A8B3 /* Sources */,
 				3A9EA7091B994DC20093A8B3 /* Frameworks */,
 				3A9EA70A1B994DC20093A8B3 /* Resources */,
+				1783DA0F60D7E6834EF67F74 /* [CP] Embed Pods Frameworks */,
+				87768F816D8307E126207CB8 /* [CP] Copy Pods Resources */,
+				56D2F8B42150168E00A56A09 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -557,6 +588,7 @@
 				TargetAttributes = {
 					3A9EA70B1B994DC20093A8B3 = {
 						CreatedOnToolsVersion = 6.4;
+						ProvisioningStyle = Manual;
 					};
 					3A9EA7271B994DC20093A8B3 = {
 						CreatedOnToolsVersion = 6.4;
@@ -598,6 +630,7 @@
 				3AD2125621252584006891B4 /* Launch Screen.storyboard in Resources */,
 				3ACC3C681D18C8AC00DABE56 /* general.pdf in Resources */,
 				3ACC3C691D18C8AC00DABE56 /* trapping.pdf in Resources */,
+				56D2F8B621501FF500A56A09 /* RELEASE.txt in Resources */,
 				3A9EA71E1B994DC20093A8B3 /* Main.storyboard in Resources */,
 				3A9A979B1C73BAF5005FC9D4 /* management_units.sqlite in Resources */,
 				3A09023F1CA3BDFB00043AC1 /* region_3.pdf in Resources */,
@@ -616,6 +649,71 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1783DA0F60D7E6834EF67F74 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WildlifeTracker/Pods-WildlifeTracker-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		56D2F8B42150168E00A56A09 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" xxxxx yyyyy";
+		};
+		87768F816D8307E126207CB8 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WildlifeTracker/Pods-WildlifeTracker-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C6E4E4A0076C91CDF5DF680A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WildlifeTracker-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3A9EA7081B994DC20093A8B3 /* Sources */ = {
@@ -815,10 +913,12 @@
 		};
 		3A9EA7331B994DC20093A8B3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7AD2C6A719A57CEFBA1FA9AA /* Pods-WildlifeTracker.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				INFOPLIST_FILE = WildlifeTracker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ca.bc.gov.fw.$(PRODUCT_NAME:rfc1034identifier)";
@@ -828,14 +928,19 @@
 		};
 		3A9EA7341B994DC20093A8B3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C74544487F8219CC812415ED /* Pods-WildlifeTracker.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = L796QSLV3E;
 				INFOPLIST_FILE = WildlifeTracker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ca.bc.gov.fw.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "596c774f-7159-4ade-9223-b69be25e0db6";
+				PROVISIONING_PROFILE_SPECIFIER = "BC Moose Tracker AdHoc";
 			};
 			name = Release;
 		};
