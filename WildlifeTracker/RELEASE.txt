@@ -2,6 +2,10 @@ RELEASE NOTES
 
 Version 1.2.1
 
+Build 104
+
+- No changes
+
 Build 103
 
 - Update app icons
