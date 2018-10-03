@@ -220,7 +220,6 @@
 		3AAD7A6C1D344AA500679975 /* WTTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WTTabBarController.m; sourceTree = "<group>"; };
 		3ACC3C661D18C8AC00DABE56 /* general.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = general.pdf; sourceTree = "<group>"; };
 		3ACC3C671D18C8AC00DABE56 /* trapping.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = trapping.pdf; sourceTree = "<group>"; };
-		3ACC65841B9B871D00BF4974 /* Artwork */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Artwork; sourceTree = "<group>"; };
 		3ACC65851B9D2DE400BF4974 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		3ACC65861B9D2DE400BF4974 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		3ACC65931B9F6BF500BF4974 /* AlarmController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlarmController.h; sourceTree = "<group>"; };
@@ -421,7 +420,6 @@
 			children = (
 				56D2F8B521501FF500A56A09 /* RELEASE.txt */,
 				3A9A98081C73CBBB005FC9D4 /* libsqlite3.tbd */,
-				3ACC65841B9B871D00BF4974 /* Artwork */,
 				3A9A97A21C73CB39005FC9D4 /* fmdb */,
 				3A9A97AE1C73CB39005FC9D4 /* wkb-ios */,
 				3A9EA70E1B994DC20093A8B3 /* WildlifeTracker */,
@@ -588,7 +586,8 @@
 				TargetAttributes = {
 					3A9EA70B1B994DC20093A8B3 = {
 						CreatedOnToolsVersion = 6.4;
-						ProvisioningStyle = Manual;
+						DevelopmentTeam = L796QSLV3E;
+						ProvisioningStyle = Automatic;
 					};
 					3A9EA7271B994DC20093A8B3 = {
 						CreatedOnToolsVersion = 6.4;
@@ -917,12 +916,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L796QSLV3E;
 				INFOPLIST_FILE = WildlifeTracker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ca.bc.gov.fw.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -932,15 +933,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = L796QSLV3E;
 				INFOPLIST_FILE = WildlifeTracker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ca.bc.gov.fw.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "596c774f-7159-4ade-9223-b69be25e0db6";
-				PROVISIONING_PROFILE_SPECIFIER = "BC Moose Tracker AdHoc";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
