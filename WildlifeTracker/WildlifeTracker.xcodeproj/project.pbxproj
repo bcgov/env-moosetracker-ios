@@ -107,6 +107,7 @@
 		3A0902381CA3BDFB00043AC1 /* region_7a.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = region_7a.pdf; sourceTree = "<group>"; };
 		3A0902391CA3BDFB00043AC1 /* region_7b.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = region_7b.pdf; sourceTree = "<group>"; };
 		3A09023A1CA3BDFB00043AC1 /* region_8.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = region_8.pdf; sourceTree = "<group>"; };
+		3A16909F24D0CC21005EAEA1 /* split.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = split.sh; sourceTree = "<group>"; };
 		3A2873B31C8A4A6F00FE06D6 /* labels.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = labels.plist; sourceTree = "<group>"; };
 		3A9A97921C73B836005FC9D4 /* WTMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WTMapViewController.h; sourceTree = "<group>"; };
 		3A9A97931C73B836005FC9D4 /* WTMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WTMapViewController.m; sourceTree = "<group>"; };
@@ -261,6 +262,7 @@
 		3A0902301CA3BDFB00043AC1 /* regs */ = {
 			isa = PBXGroup;
 			children = (
+				3A16909F24D0CC21005EAEA1 /* split.sh */,
 				3ACC3C661D18C8AC00DABE56 /* general.pdf */,
 				3ACC3C671D18C8AC00DABE56 /* trapping.pdf */,
 				3A0902321CA3BDFB00043AC1 /* region_1.pdf */,
