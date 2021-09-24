@@ -5,6 +5,4 @@ platform :ios, '9.3'
 use_frameworks!
 
 target 'WildlifeTracker' do
-    pod 'Fabric'
-    pod 'Crashlytics'
 end

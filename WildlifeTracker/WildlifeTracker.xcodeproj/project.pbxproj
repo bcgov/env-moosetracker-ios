@@ -544,8 +544,6 @@
 				3A9EA7081B994DC20093A8B3 /* Sources */,
 				3A9EA7091B994DC20093A8B3 /* Frameworks */,
 				3A9EA70A1B994DC20093A8B3 /* Resources */,
-				1783DA0F60D7E6834EF67F74 /* [CP] Embed Pods Frameworks */,
-				87768F816D8307E126207CB8 /* [CP] Copy Pods Resources */,
 				56D2F8B42150168E00A56A09 /* ShellScript */,
 			);
 			buildRules = (
@@ -650,21 +648,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1783DA0F60D7E6834EF67F74 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WildlifeTracker/Pods-WildlifeTracker-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		56D2F8B42150168E00A56A09 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -677,22 +660,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\" xxxxx yyyyy";
-		};
-		87768F816D8307E126207CB8 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WildlifeTracker/Pods-WildlifeTracker-resources.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 		C6E4E4A0076C91CDF5DF680A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
