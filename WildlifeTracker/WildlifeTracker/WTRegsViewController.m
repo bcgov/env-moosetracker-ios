@@ -102,7 +102,7 @@ static BOOL didShowDisclaimer = NO;
     [self.indexView.heightAnchor constraintEqualToConstant:31.0].active = YES;
     
     self.indexButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    [self.indexButton setTitle:@"Index" forState:UIControlStateNormal];
+    [self.indexButton setTitle:@"INDEX" forState:UIControlStateNormal];
     [self.indexButton addTarget:self action:@selector(indexButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     self.indexButton.translatesAutoresizingMaskIntoConstraints = NO;
     [buttonContainer addSubview:self.indexButton];
@@ -129,7 +129,7 @@ static BOOL didShowDisclaimer = NO;
     [super viewDidAppear:animated];
     if (!didShowDisclaimer) {
         didShowDisclaimer = YES;
-        NSString *title = @"Warning";
+        NSString *title = @"Double Tap to Zoom when viewing Regs \n\nWARNING";
         NSString *message = @"The British Columbia Hunting and Trapping Regulations Synopsis is intended for general information purposes only. Where there is a discrepancy between this synopsis and the Regulations, the Regulations are the final authority. Regulations are subject to change from time to time, and it is the responsibility of an individual to be informed of the current Regulations.\n\nTo ensure you have the most up to date hunting regulations please refer to the online version.";
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:title
                                                                            message:message

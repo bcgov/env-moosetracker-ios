@@ -1,5 +1,19 @@
 ![Lifecycle:Stable](https://img.shields.io/badge/Lifecycle-Stable-97ca00)
 
+#Cole's notes for updating annual regs:
+The app comes shipped with hunting regs as pdfs.  These are just the main pdf that gets published, but manually split according to region and a few other categories.  This can be done simply by using chrome and printing sections of the pdf to pdfs containing the desired pages.  A quick search in the repo and you can see what they need to be named and what sections there are.
+
+Take a peek in options.plist and make sure you have the hash for the right provisioning profile for signing.  Take a peek in deploy.sh to see the two env vars you need to set for app store deployment.
+
+Finally, this is all that needs to happen:
+
+sh buildAndSign.sh (opens mobile signing, follow the prompts and download the file).
+sh deploy.sh (will grab the download and upload to testflight).
+
+Note that the first shell script increments the build version for you.
+
+
+
 
 # env-moosetracker-ios
 iOS mobile app that allows hunters to participate in moose conservation and management.

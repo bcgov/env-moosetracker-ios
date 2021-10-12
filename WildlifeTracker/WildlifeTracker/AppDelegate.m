@@ -2,8 +2,6 @@
 #import "DataController.h"
 #import "AlarmController.h"
 #import "SettingsViewController.h"
-#import <Fabric/Fabric.h>
-#import <Crashlytics/Crashlytics.h>
 
 @interface AppDelegate ()
 
@@ -16,7 +14,6 @@
 {
     NSLog(@"%s", __PRETTY_FUNCTION__);
     
-    [Fabric with:@[[Crashlytics class]]];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
